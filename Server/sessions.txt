@@ -1,0 +1,28 @@
+When we run this command:
+req.session.userId = user.id;
+
+We are storing some data into session. So behind the scenes, any data stuck to this session object will-
+be sent to redis:
+{userId: 1} -> send that to redis 
+
+Redis is a key-value storage, so it will look something like this
+1)
+sess:qewrhhrhuqwefri -> (maps to our object) {userId: 1} 
+
+2)
+The express-session middleware will set a cookie on the browser (which will look like: ufwiueuhif23h8329u423nir)
+think of the cookie as a signed version of the session key
+
+3) 
+When user makes a request...
+ufwiueuhif23h8329u423nir -> sent to the server
+
+4) 
+On the server, the cookie is unsigned|decrypt using the secret we have
+ufwiueuhif23h8329u423nir -> sess:qewrhhrhuqwefri 
+
+5) 
+Make a request to redis by looking up the key
+sess:qewrhhrhuqwefri -> { userId: 1 }
+
+req.session = { userId: 1 }

@@ -1,0 +1,10 @@
+Server-Side Rendering flow
+
+1) I make a request to browse http://localhost:3000 (where website is)
+
+2) Make request to next.js server
+
+3) next.js server will make a request graphql server localhost:4000
+
+4) GraphQl builds HTML, and sends it to my browser
+
