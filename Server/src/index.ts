@@ -1,5 +1,3 @@
-//11:43:56
-//
 // To setup:
 // Start Postgres server
 // Open MacOS terminal and enter: brew services start redis
